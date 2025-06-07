@@ -19,4 +19,19 @@ class Review extends Model
         return $this->belongsTo(Book::class);
 
     }
+
+    protected static function booted()
+    {
+        static::updated(fn(Review $review)=>cache()->forget('book:' . $review->book_id));
+        static::deleted(fn(Review $review)=>cache()->forget('book:' . $review->book_id));
+    }
+    /*
+     *> $review = \App\Models\Review::find(1614);
+     *> $review->update(['rating'=>1]);
+     *
+     * $review =\App\Models\Review::where('id',1614)->update(['rating'=>1]);
+     *
+     * sabab nimada tepadegida ozgardi frontiyam pasdegida ozgarmadi.
+     *
+     */
 }

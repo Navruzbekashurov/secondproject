@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookControler;
+use App\Http\Controllers\BookController;
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +15,4 @@ Route::get('/', function () {
   //  return \Illuminate\Support\Facades\Cache::get('books');
 });
 
-Route::resource('books', BookControler::class);
+Route::resource('books', BookController::class);
